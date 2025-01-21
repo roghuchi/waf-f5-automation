@@ -119,7 +119,7 @@ pipeline {
                             <p>The policy has been successfully applied.</p>
                         """,
                         to: '${EMAIL_RECIPIENTS}',
-                        from: '${MAIL_SENDER}',
+                        from: '${EMAIL_SENDER}',
                         mimeType: 'text/html'
                     )
                 } catch (Exception e) {
@@ -140,7 +140,7 @@ pipeline {
                             <p>Please check the Jenkins logs for more details.</p>
                         """,
                         to: '${EMAIL_RECIPIENTS}',
-                        from: '${MAIL_SENDER}',
+                        from: '${EMAIL_SENDER}',
                         mimeType: 'text/html'
                     )
                 } catch (Exception e) {
