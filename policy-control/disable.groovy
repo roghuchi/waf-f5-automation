@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'node01' }
+    agent any
 
     environment {
         F5_NAME = 'WAF-10'
