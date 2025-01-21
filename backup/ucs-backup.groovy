@@ -129,7 +129,7 @@ pipeline {
                     subject: "Backup F5 report for: ${F5_NAME} ${F5_HOST}",
                     body: """<p>Backup F5 report for: ${F5_NAME} ${F5_HOST} is failed.</p>""",
                     to: '${EMAIL_RECIPIENTS}',
-                    from: '${MAIL_SENDER}',
+                    from: '${EMAIL_SENDER}',
                     mimeType: 'text/html'
                 )
             }
