@@ -28,7 +28,7 @@ pipeline {
                 script {
                     try {
                         sh """
-                        ssh ${F5_USER}@${F5_HOST} 'modify ltm virtual ${params.VIRTUAl_SERVER} policies add { asm_auto_l7_policy__${params.VIRTUAl_SERVER} }'
+                        ssh ${F5_USER}@${F5_HOST} 'tmsh modify ltm virtual ${params.VIRTUAl_SERVER} policies add { asm_auto_l7_policy__${params.VIRTUAl_SERVER} }'
                         """
                         echo "The virtual server policy has been enable"
                     } catch (Exception e) {
