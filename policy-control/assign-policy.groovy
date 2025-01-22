@@ -29,7 +29,7 @@ pipeline {
                 script {
                     try {
                         sh """
-                        ssh ${F5_USER}@${F5_HOST} 'modify ltm virtual ${params.VIRTUAl_SERVER} Profiles add { websecurity { } } '
+                        ssh ${F5_USER}@${F5_HOST} 'tmsh modify ltm virtual ${params.VIRTUAl_SERVER} Profiles add { websecurity { } } '
                         """
                         echo "The virtual server profile has been modified"
                     } catch (Exception e) {
@@ -45,7 +45,7 @@ pipeline {
                 script {
                     try {
                         sh """
-                        ssh ${F5_USER}@${F5_HOST} 'create ltm policy /Common/Drafts/asm_auto_l7_policy__${params.VIRTUAl_SERVER} controls add { asm } strategy first-match  requires add { http } rules add { default { actions add { 1 { asm enable policy ${params.POLICY_NAME} } } ordinal 1 } } '
+                        ssh ${F5_USER}@${F5_HOST} 'tmsh create ltm policy /Common/Drafts/asm_auto_l7_policy__${params.VIRTUAl_SERVER} controls add { asm } strategy first-match  requires add { http } rules add { default { actions add { 1 { asm enable policy ${params.POLICY_NAME} } } ordinal 1 } } '
                         """
                         echo "The ltm policy has been created"
                     } catch (Exception e) {
@@ -61,7 +61,7 @@ pipeline {
                 script {
                     try {
                         sh """
-                        ssh ${F5_USER}@${F5_HOST} 'publish ltm policy Drafts/asm_auto_l7_policy__${params.VIRTUAl_SERVER}'
+                        ssh ${F5_USER}@${F5_HOST} 'tmsh publish ltm policy Drafts/asm_auto_l7_policy__${params.VIRTUAl_SERVER}'
                         """
                         echo "The policy has been published"
                     } catch (Exception e) {
@@ -77,7 +77,7 @@ pipeline {
                 script {
                     try {
                         sh """
-                        ssh ${F5_USER}@${F5_HOST} 'modify ltm virtual ${params.VIRTUAl_SERVER} policies add { asm_auto_l7_policy__${params.VIRTUAl_SERVER} }'
+                        ssh ${F5_USER}@${F5_HOST} 'tmsh modify ltm virtual ${params.VIRTUAl_SERVER} policies add { asm_auto_l7_policy__${params.VIRTUAl_SERVER} }'
                         """
                         echo "The virtual server policy has been enable"
                     } catch (Exception e) {
