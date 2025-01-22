@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('List LTM Virtual Servers') {
+        stage('Policy Disable Virtual Servers') {
             steps {
                 script {
                     try {
